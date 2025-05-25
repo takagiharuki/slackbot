@@ -9,6 +9,7 @@ const app = new App({
     appToken: process.env.SLACK_APP_TOKEN, // ソケットモード
 });
 
+
 // Listens to incoming messages that contain "hello"
 app.message("hello", async ({ message, say } : { message: any, say: Function }) => {
     // say() sends a message to the channel where the event was triggered
@@ -21,7 +22,7 @@ const askChatGPT = async ({event, say}: { event: any, say: Function }) => {
         model: "gpt-4.1",
         input: event.text,
     });
-    await say(response.output_text);
+    await say({text:response.output_text, thread_ts: event.ts});
 }
 
 // メンションすると ChatGPT にぶん投げる
