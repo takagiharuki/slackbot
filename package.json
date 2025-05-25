@@ -1,0 +1,31 @@
+{
+    "name": "slackbot",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm run build && npm run serve",
+        "build": "npx tsc",
+        "serve": "node --require dotenv/config dist/app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/takagiharuki/slackbot.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/takagiharuki/slackbot/issues"
+    },
+    "homepage": "https://github.com/takagiharuki/slackbot#readme",
+    "description": "",
+    "dependencies": {
+        "@slack/bolt": "^4.4.0",
+        "dotenv": "^16.5.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.21",
+        "typescript": "^5.8.3"
+    }
+}
