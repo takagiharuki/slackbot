@@ -1,4 +1,6 @@
 import { App, SlackEventMiddlewareArgs } from "@slack/bolt";
+import OpenAI from "openai";
+const openai = new OpenAI();
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -12,6 +14,18 @@ app.message("hello", async ({ message, say } : { message: any, say: Function }) 
     // say() sends a message to the channel where the event was triggered
     say(`Hey there <@${message.user}>!`);
 });
+
+
+const askChatGPT = async ({event, say}: { event: any, say: Function }) => {
+    const response = await openai.responses.create({
+        model: "gpt-4.1",
+        input: event.text,
+    });
+    await say(response.output_text);
+}
+
+// メンションすると ChatGPT にぶん投げる
+app.event("app_mention", askChatGPT);
 
 (async () => {
     // Start your app
