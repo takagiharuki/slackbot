@@ -2,7 +2,9 @@ import { App, SlackEventMiddlewareArgs } from "@slack/bolt";
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+    socketMode: true, // ソケットモード
+    appToken: process.env.SLACK_APP_TOKEN, // ソケットモード
 });
 
 // Listens to incoming messages that contain "hello"
